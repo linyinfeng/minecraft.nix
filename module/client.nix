@@ -23,6 +23,7 @@ let
     };
 in {
   imports = [
+    ./common/declarative.nix
     ./common/version.nix
     ./common/java.nix
     ./common/launch-script.nix
@@ -55,11 +56,6 @@ in {
       type = package;
       description = "The launcher of the game.";
       readOnly = true;
-    };
-    declarative = mkOption {
-      type = bool;
-      description = "Whether using a declarative way to manage game files.";
-      default = true;
     };
 
     # Internal

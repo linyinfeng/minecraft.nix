@@ -1,6 +1,6 @@
 { config, lib, pkgs, ... }:
 let
-  inherit (lib.types) mkOptionType listOf package singleLineStr bool nullOr;
+  inherit (lib.types) mkOptionType listOf package singleLineStr nullOr;
   inherit (lib.options) mergeEqualOption mkOption;
   inherit (lib.strings) isStringLike hasSuffix concatStringsSep optionalString;
   inherit (pkgs) writeShellScriptBin;
@@ -13,6 +13,7 @@ let
   };
 in {
   imports = [
+    ./common/declarative.nix
     ./common/version.nix
     ./common/java.nix
     ./common/launch-script.nix
@@ -30,11 +31,6 @@ in {
       type = package;
       description = "The launcher of the game.";
       readOnly = true;
-    };
-    declarative = mkOption {
-      type = bool;
-      description = "Whether using a declarative way to manage game files.";
-      default = true;
     };
 
     # Internal
